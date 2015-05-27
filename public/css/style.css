@@ -1,0 +1,32 @@
+
+body{
+    background-color: #222222 !important;
+}
+.main{
+    background-color: #000000;
+}
+.logo, .logo a{
+    font-size: 50px;
+    font-family: LeagueGothic;
+    color: #a94442;
+
+}
+
+.league_gothic{
+    font-family: LeagueGothic;
+}
+
+.default_font{
+    font-family: LeagueGothic;
+    color: #a94442;
+}
+
+.login_buttons, .login_buttons a{
+    font-family: LeagueGothic;
+    color: #a94442;
+}
+
+@font-face {
+    font-family: LeagueGothic;
+    src: url("fonts/league_gothic/LeagueGothic-Regular.otf") format("opentype");
+}
