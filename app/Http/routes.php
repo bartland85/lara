@@ -27,7 +27,14 @@ Route::resource('photos', 'PhotoController');
 
 Route::resource('post', 'PostController');
 
+Route::resource('user', 'UserController');
+
+Route::controller('admin', 'AdminController');
+
+Route::get('login', function(){ return redirect('auth/login', 301); });
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+

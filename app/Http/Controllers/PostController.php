@@ -16,6 +16,7 @@ class PostController extends Controller {
 	 */
 	public function index()
 	{
+
 		$posts = DB::select('select * from posts');
 
         return view('index', ['posts'=>$posts]);
