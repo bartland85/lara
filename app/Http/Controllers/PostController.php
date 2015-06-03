@@ -3,9 +3,12 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Cast\Object;
 
 class PostController extends Controller {
 
@@ -17,7 +20,7 @@ class PostController extends Controller {
 	public function index()
 	{
 
-		$posts = DB::select('select * from posts');
+		$posts = Post::all();
 
         return view('index', ['posts'=>$posts]);
 	}
@@ -29,7 +32,8 @@ class PostController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
+		return view('post_edit', ['post'=> new Post()]);
 	}
 
 	/**
@@ -37,9 +41,20 @@ class PostController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+
+		$post = new Post();
+        $post->title = $request->input('title');
+        $post->text = $request->input('text');
+        $post->user_id = Auth::user()->id;
+        $post->author = Auth::user()->name;
+
+        $post->save();
+
+
+
+        return redirect('/post/'.$post->id.'/edit');
 	}
 
 	/**
@@ -61,6 +76,9 @@ class PostController extends Controller {
 	 */
 	public function edit($id)
 	{
+        $post = Post::find($id);
+
+        return view('post_edit', ['post'=>$post]);
 		//
 	}
 
@@ -70,9 +88,16 @@ class PostController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+        $post = Post::find($id);
+
+        $post->title = $request->input('title');
+        $post->text = $request->input('text');
+
+        $post->save();
+
+        return redirect('/post/'.$post->id.'/edit');
 	}
 
 	/**

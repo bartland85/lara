@@ -27,7 +27,7 @@ Route::resource('photos', 'PhotoController');
 
 Route::resource('post', 'PostController');
 
-Route::resource('user', 'UserController');
+Route::resource('admin/user', 'UserController');
 
 Route::controller('admin', 'AdminController');
 
@@ -37,4 +37,10 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+/*Event::listen('illuminate.query', function($query)
+{
+    var_dump($query);
+});*/
 

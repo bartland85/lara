@@ -9,7 +9,10 @@ body{
     font-size: 50px;
     font-family: LeagueGothic;
     color: #a94442;
+}
 
+.theme_color{
+    color: #a94442;
 }
 
 .league_gothic{
@@ -29,4 +32,12 @@ body{
 @font-face {
     font-family: LeagueGothic;
     src: url("fonts/league_gothic/LeagueGothic-Regular.otf") format("opentype");
+}
+
+.medium{
+    font-size: 20px;
+}
+
+.note-editable{
+    background-color: #ffffff;
 }
