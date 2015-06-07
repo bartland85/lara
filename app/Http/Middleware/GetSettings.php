@@ -1,5 +1,7 @@
 <?php namespace App\Http\Middleware;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use App\Settings;
 use Closure;
@@ -17,7 +19,14 @@ class GetSettings {
 	{
         $settings = Settings::find(1);
 
+        App::setLocale(Session::get('language'));
+
+
         $settings->languages = unserialize($settings->languages);
+
+        if(!$settings->languages)$settings->languages = [App::getLocale()];
+
+
 
         View::share('settings', $settings);
 

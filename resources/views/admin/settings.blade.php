@@ -11,13 +11,20 @@
 
     <table>
     @foreach($avlLangs as $lang)
-        <tr><td>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="languages[]" value="{{ $lang }}" {{ dTools::checked(in_array($lang, $settings->languages)) }} > {{ $lang }}
-                </label>
-            </div>
-        </td></tr>
+        <tr>
+            <td>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="languages[{{ $lang }}]" value="{{ $lang }}" {{ dTools::checked(in_array($lang, $settings->languages)) }} > {{ $lang }}
+                    </label>
+                </div>
+            </td>
+            <td>
+                @if(!Storage::exists('/lara/resources/lang/'.$lang))
+                    &nbsp;<a href="/lara/public/scripts/get_translations/{{ $lang }}">download</a>
+                @endif
+            </td>
+        </tr>
     @endforeach
     </table>
     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />

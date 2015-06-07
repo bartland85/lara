@@ -38,6 +38,14 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+Route::post('language', function(){
+
+    \Illuminate\Support\Facades\Session::put('language', \Illuminate\Support\Facades\Request::input('lang'));
+
+
+    return \Illuminate\Support\Facades\Redirect::back();
+});
+
 
 /*Event::listen('illuminate.query', function($query)
 {

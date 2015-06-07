@@ -49,6 +49,11 @@ jQuery(document).ready(function($){
 
         })
 
+    });
+
+    $('#language-change-select').change(function(){
+        $('#language-form').submit();
+
     })
 
 });
