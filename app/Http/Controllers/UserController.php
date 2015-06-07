@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Lib\Helpers\dTools;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller {
 
@@ -98,5 +99,13 @@ class UserController extends Controller {
 	{
 		//
 	}
+
+    public function adult()
+    {
+        Session::put('adult', true);
+
+        echo 123;
+
+    }
 
 }

@@ -12,11 +12,17 @@
         <label for="text">Post's text: </label>
        <textarea class="form-control" id="text" name="text">{{ $post->text }}</textarea>
     </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="adult" value="1" {{ dTools::checked($post->adult) }}> only for adults
+        </label>
+    </div>
     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
     @if($post->id)
         <input type="hidden" name="_method" value="PUT" />
     @endif
     <input type="submit" class="btn btn-primary btn-lg" value="Save">
 </form>
+
 
 @endsection

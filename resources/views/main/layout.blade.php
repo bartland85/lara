@@ -28,8 +28,11 @@
     <div class="row">
         <div class="header">
             @section('header')
-            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <div class="logo"><a href="/lara/public/">{{ $settings->blogsName }}</a></div>
+            </div>
+            <div class="col-lg-2 col-md-10 col-sm-12 col-xs-12 login_buttons">
+                @include('language_select')
             </div>
             <div class="col-lg-2 col-md-10 col-sm-12 col-xs-12 login_buttons">
                 @include('header_buttons')

@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Post;
+use Bootstrapper\Facades\Accordion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ class PostController extends Controller {
 	public function index()
 	{
 
-		$posts = Post::all();
+		$posts = Post::all()->sortByDesc('created_at');
 
         return view('index', ['posts'=>$posts]);
 	}
@@ -45,13 +46,10 @@ class PostController extends Controller {
 	{
 
 		$post = new Post();
-        $post->title = $request->input('title');
-        $post->text = $request->input('text');
-        $post->user_id = Auth::user()->id;
-        $post->author = Auth::user()->name;
+
+        $post->fetchRequest($request);
 
         $post->save();
-
 
 
         return redirect('/post/'.$post->id.'/edit');
@@ -65,7 +63,12 @@ class PostController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $post = Post::find($id);
+
+        if($post->forAdults() && !Auth::user()->isAdult())
+            return view('_adult', ['post_id'=>$post->id]);
+         else
+            return view('post', ['post'=>$post]);
 	}
 
 	/**
@@ -92,8 +95,7 @@ class PostController extends Controller {
 	{
         $post = Post::find($id);
 
-        $post->title = $request->input('title');
-        $post->text = $request->input('text');
+       $post->fetchRequest($request);
 
         $post->save();
 

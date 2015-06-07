@@ -15,7 +15,12 @@ class GetSettings {
 	 */
 	public function handle($request, Closure $next)
 	{
-        View::share('settings', Settings::find(1));
+        $settings = Settings::find(1);
+
+        $settings->languages = unserialize($settings->languages);
+
+        View::share('settings', $settings);
+
 
 		return $next($request);
 	}

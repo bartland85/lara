@@ -41,4 +41,14 @@ jQuery(document).ready(function($){
 
     });
 
+    $('.adult_confirm_button').on('click', function(){
+
+        $.ajax({
+            'method': 'GET',
+            'url': '/lara/public/admin/user/adult'
+
+        })
+
+    })
+
 });
