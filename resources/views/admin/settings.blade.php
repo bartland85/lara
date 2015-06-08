@@ -20,8 +20,8 @@
                 </div>
             </td>
             <td>
-                @if(!Storage::exists('/lara/resources/lang/'.$lang))
-                    &nbsp;<a href="/lara/public/scripts/get_translations/{{ $lang }}">download</a>
+                @if(!File::exists(base_path().'/resources/lang/'.$lang))
+                    &nbsp;<a class="lang-download" data-lang="{{ $lang }}" href="javascript:;">download</a>
                 @endif
             </td>
         </tr>

@@ -31,6 +31,8 @@ Route::resource('admin/user', 'UserController');
 
 Route::controller('admin', 'AdminController');
 
+Route::get('scripts/translate/{lang}', 'ScriptsController@translate');
+
 Route::get('login', function(){ return redirect('auth/login', 301); });
 
 Route::controllers([

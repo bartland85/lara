@@ -54,6 +54,16 @@ jQuery(document).ready(function($){
     $('#language-change-select').change(function(){
         $('#language-form').submit();
 
-    })
+    });
+
+    $('.lang-download').click(function(){
+
+        $.ajax({
+            'method': 'GET',
+            'url': '/lara/public/scripts/translate/' + $(this).attr('data-lang')
+            //'data': {'lang': $(this).attr('data-lang')}
+
+        });
+    });
 
 });
