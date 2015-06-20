@@ -11,11 +11,15 @@
 
     <table>
     @foreach($avlLangs as $lang)
+
+
+
+
         <tr>
             <td>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="languages[{{ $lang }}]" value="{{ $lang }}" {{ dTools::checked(in_array($lang, $settings->languages)) }} > {{ $lang }}
+                        <input type="checkbox" id="languages_{{ $lang }}" name="languages[{{ $lang }}]" value="{{ $lang }}" @if(!File::exists(base_path().'/resources/lang/'.$lang)) disabled @endif{{ dTools::checked(in_array($lang, $settings->languages)) }} > {{ $lang }}
                     </label>
                 </div>
             </td>

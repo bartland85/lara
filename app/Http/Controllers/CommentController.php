@@ -5,12 +5,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Post;
-use Bootstrapper\Facades\Accordion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\Cast\Object;
 
-class PostController extends Controller {
+class CommentController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -19,10 +16,7 @@ class PostController extends Controller {
 	 */
 	public function index()
 	{
-
-		$posts = Post::all()->sortByDesc('created_at');
-
-        return view('index', ['posts'=>$posts]);
+		//
 	}
 
 	/**
@@ -32,26 +26,25 @@ class PostController extends Controller {
 	 */
 	public function create()
 	{
-
-		return view('post_edit', ['post'=> new Post()]);
+		//
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param $request
 	 * @return Response
 	 */
 	public function store(Request $request)
 	{
+        $post = Post::find($request->input('postID'));
 
-		$post = new Post();
+        $comment = new \Lanz\Commentable\Comment();
+        $comment->author = $request->input('author');
+        $comment->body = $request->input('body');
 
-        $post->fetchRequest($request);
+        $post->comments()->save($comment);
 
-        $post->save();
-
-
-        return redirect('/post/'.$post->id.'/edit');
 	}
 
 	/**
@@ -62,15 +55,7 @@ class PostController extends Controller {
 	 */
 	public function show($id)
 	{
-        $post = Post::find($id);
-
-        $post->comments = Comment::where('commentable_id', $id)->get();
-
-
-        if($post->forAdults() && !Auth::user()->isAdult())
-            return view('_adult', ['post_id'=>$post->id]);
-         else
-            return view('post', ['post'=>$post]);
+		//
 	}
 
 	/**
@@ -81,9 +66,6 @@ class PostController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $post = Post::find($id);
-
-        return view('post_edit', ['post'=>$post]);
 		//
 	}
 
@@ -93,15 +75,9 @@ class PostController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, Request $request)
+	public function update($id)
 	{
-        $post = Post::find($id);
-
-       $post->fetchRequest($request);
-
-        $post->save();
-
-        return redirect('/post/'.$post->id.'/edit');
+		//
 	}
 
 	/**

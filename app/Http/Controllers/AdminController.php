@@ -33,7 +33,7 @@ class AdminController extends Controller{
 
     public function getSettings()
     {
-        $avlLangs = ['en', 'pl', 'es'];
+        $avlLangs = ['en', 'pl', 'es', 'fr'];
 
 
 

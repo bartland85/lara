@@ -58,11 +58,33 @@ jQuery(document).ready(function($){
 
     $('.lang-download').click(function(){
 
-        $.ajax({
-            'method': 'GET',
-            'url': '/lara/public/scripts/translate/' + $(this).attr('data-lang')
-            //'data': {'lang': $(this).attr('data-lang')}
+        var link = $(this);
 
+        $.ajax({
+            method: 'GET',
+            url: '/lara/public/scripts/translate/' + link.attr('data-lang'),
+            success:function(response){
+
+                    if(response == 'success'){
+                    link.remove();
+                    console.log($('#languages[' + link.attr('data-lang') + ']'));
+                    console.log('#languages[' + link.attr('data-lang') + ']');
+                    $('#languages_' + link.attr('data-lang')).prop("disabled", false);
+                    }
+
+            }
+
+
+        });
+    });
+
+    $(document).on('submit', '#comment-form', function(event){
+        event.preventDefault();
+
+        $.ajax({
+            'url': $(this).attr('action'),
+            'method': $(this).attr('method'),
+            'data': $(this).serialize()
         });
     });
 

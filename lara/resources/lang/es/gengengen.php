@@ -1,5 +1,5 @@
 <?php return array (
-  'my_account' => 'mi cuenta',
+  'my_account' => 'Mi cuenta',
   'add_new_post' => 'Añadir nuevo comentario',
-  'logout' => 'desconectar',
+  'logout' => 'Desconectar',
 );

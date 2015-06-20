@@ -11,5 +11,8 @@ return [
     'my_account' => 'My account',
     'add_new_post'     => 'Add new post',
     'logout'     => 'Sign out',
+    'write_comment'     => 'Write a comment',
+    'your_name'     => 'Your name',
+    'submit_comment'     => 'Submit',
 
 ];

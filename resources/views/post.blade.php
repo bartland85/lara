@@ -16,6 +16,27 @@
 <div class="row">
     <div class="col-lg-12">{{ $post->author }}</div>
 </div>
+<hr>
+<div class="row">
+    <div class="col-lg-12">
+
+        {!! Form::open(['method'=>'POST', 'route'=>'comment.store', 'id'=>'comment-form', 'class'=>'form-inline']) !!}
+            <div class="form-group">
+                <p>{{ trans('gen.write_comment') }}</p>
+                <label for="author">{{ trans('gen.your_name') }}</label>
+                {!! Form::text('author', null, ['class'=>'form-control', 'size'=>'15']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::textarea('body', null, ['size'=>'120x5', 'class'=>'form-control']) !!}
+                {!! Form::hidden('postID', $post->id) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::submit(trans('gen.submit_comment'), ['class'=>'btn btn-default']) !!}
+            </div>
+        {!! Form::close() !!}
+
+    </div>
+</div>
 
 
 @endsection

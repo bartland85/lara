@@ -27,6 +27,8 @@ Route::resource('photos', 'PhotoController');
 
 Route::resource('post', 'PostController');
 
+Route::resource('comment', 'CommentController');
+
 Route::resource('admin/user', 'UserController');
 
 Route::controller('admin', 'AdminController');

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSettingsTable extends Migration {
+class AddAdminFieldToUsers extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,9 @@ class CreateSettingsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('settings', function(Blueprint $table)
+		Schema::table('users', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->timestamps();
+			$table->char('admin', 1);
 		});
 	}
 
@@ -26,7 +25,10 @@ class CreateSettingsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('settings');
+		Schema::table('users', function(Blueprint $table)
+		{
+			$table->dropColumn('admin');
+		});
 	}
 
 }

@@ -147,7 +147,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
-        'Bootstrapper\BootstrapperL5ServiceProvider',
+        'Lanz\Commentable\CommentableServiceProvider',
+
 
 
 	],

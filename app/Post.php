@@ -3,8 +3,11 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Lanz\Commentable\Commentable;
 
 class Post extends Model {
+
+    use Commentable;
 
     protected $table = 'posts';
 
